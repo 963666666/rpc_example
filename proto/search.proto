@@ -4,6 +4,7 @@ package proto;
 
 service SearchService {
     rpc Search(SearchRequest) returns (SearchResponse) {}
+    rpc GetUserById(UserRequest) returns (UserResponse) {}
 }
 
 message SearchRequest {
@@ -12,4 +13,14 @@ message SearchRequest {
 
 message SearchResponse {
     string response = 1;
+}
+
+message UserRequest {
+    int64 id = 1;
+}
+
+message UserResponse {
+    string user = 1;
+    string admin = 2;
+    int64 loginci = 3;
 }

@@ -1,4 +1,4 @@
-package main
+package simple_client
 
 import (
 	"golang.org/x/net/context"
@@ -15,7 +15,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("grpc Dial err: %v", err)
 	}
-	defer conn.Close()
+
 
 	client := proto.NewSearchServiceClient(conn)
 
@@ -23,9 +23,12 @@ func main() {
 		Request: "gRPC",
 	})
 
+	user, err := client.GetUserById(context.Background(), &proto.UserRequest{Id: 1})
+
 	if err != nil {
 		log.Fatalf("client.Search err: %v", err)
 	}
 	log.Printf("resp: %s", resp.Response)
-
+	log.Printf("userinfo is %s", user)
+	conn.Close()
 }
