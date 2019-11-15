@@ -11,7 +11,7 @@ import (
 const Addr = ":9005"
 
 func main() {
-	c, err := credentials.NewClientTLSFromFile("../../conf/server.pem", "rpc_example")
+	c, err := credentials.NewClientTLSFromFile("../../conf/server.pem", "server")
 	if err != nil {
 		log.Fatalf("credentials.NewClientTLSFromFile err: %v", err)
 	}
@@ -31,6 +31,6 @@ func main() {
 		log.Fatalf("client.Search err: %v", err)
 	}
 
-	log.Printf("resp: %s", resp.GetResponse())
+	log.Printf("resp: %s", resp.Response)
 
 }

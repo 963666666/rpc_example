@@ -14,7 +14,9 @@ import (
 type SearchService struct {}
 
 func (s *SearchService) Search(ctx context.Context, request *proto.SearchRequest) (*proto.SearchResponse, error) {
-	return &proto.SearchResponse{}, nil
+	return &proto.SearchResponse{
+		Response: request.Request + " hello world",
+	}, nil
 }
 
 func (s *SearchService) GetUserById(ctx context.Context, request *proto.UserRequest) (*proto.UserResponse, error) {
