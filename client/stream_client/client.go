@@ -2,11 +2,11 @@ package main
 
 import (
 	"context"
+	"google.golang.org/grpc"
 	"io"
 	"log"
-
-	"google.golang.org/grpc"
 	"rpc_example/proto"
+	"time"
 )
 
 const Addr = ":9003"
@@ -24,7 +24,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("PrintRecord.err is %s", err.Error())
 	}
-	err = printRoute(client, &proto.StreamRequest{Pt: &proto.StreamPoint{Name: "gRPC stream Client: Route", Value: 2020}})
+	err = printRoute(client, &proto.StreamRequest{Pt: &proto.StreamPoint{Name: "gRPC stream Client: Route", Value: time.Now().UnixNano()}})
 	if err != nil {
 		log.Fatalf("PrintRoute.err is %s", err.Error())
 	}
@@ -92,7 +92,7 @@ func printRoute(client proto.StreamServiceClient, r *proto.StreamRequest) error 
 			return err
 		}
 
-		log.Printf("resp: pj.name: %s, pt.value: %d", resp.Pt.Name, resp.Pt.Value)
+		log.Printf("resp: pj.name: %s, pt.value: %d, %d", resp.Pt.Name, resp.Pt.Value, time.Now().UnixNano())
 	}
 
 	stream.CloseSend()

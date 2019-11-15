@@ -6,6 +6,7 @@ import (
 	"log"
 	"net"
 	"rpc_example/proto"
+	"time"
 )
 
 const ADDRESS = ":9003"
@@ -60,7 +61,7 @@ func (s *StreamService) Route(stream proto.StreamService_RouteServer) error {
 		}
 		n ++
 
-		log.Printf("stream.Revc pt.name: %s, pt.value: %d", r.Pt.Name, r.Pt.Value)
+		log.Printf("stream.Revc pt.name: %s, pt.value: %d, %d", r.Pt.Name, r.Pt.Value, time.Now().UnixNano())
 	}
 
 	return nil
