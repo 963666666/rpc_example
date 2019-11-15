@@ -1,4 +1,4 @@
-package simple_server
+package main
 
 import (
 	"context"
