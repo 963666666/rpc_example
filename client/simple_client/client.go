@@ -1,4 +1,4 @@
-package simple_client
+package main
 
 import (
 	"golang.org/x/net/context"
